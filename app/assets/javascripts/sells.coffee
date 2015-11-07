@@ -14,9 +14,34 @@ $(document).on 'page:change', ->  #cuando cargue de pagina cargue todo lo que ha
             success: (data) -> #si tiene exito lo que me traiga se guarda en data
                 $('#cantidad').text(data.cantidad)    #lo que esta entre las etiquetas con #cantidad levamos atraer cantidad del producto
                 $('#valor').text(data.precio)
+                calcular_total()
+    
+    calcular_total = () ->  #clacular el precio total 
+        cantidad = $('#sell_cantidad').val() || 0 
+        precio = $('#valor').text()
+        
+        valor_total = parseFloat(cantidad) * parseFloat(precio)
+        
+        $('input#sell_precio_total').val(valor_total)
+        
             
     $('#sell_product_id').change ->              #cuando cambie de opcion en el select se ejecuta este evento
-        if @value          #this value es el valor que esta seleccionado en el select 
-            traer_cantidad_valor(@value)
+        if @value
+            traer_cantidad_valor(@value) 
+            
+            
         else
+            calcular_total()
             $('.clean').text(0) #si el valor esta nill la clase .clean quedara en 0
+            
+            
+            
+    
+    $('input#sell_cantidad').keyup ->  #traigo el id sell_cantidad y keyup captura todo cuando quitamos el dedo de la tecla      
+        calcular_total()
+    
+    
+    
+    
+    
+    

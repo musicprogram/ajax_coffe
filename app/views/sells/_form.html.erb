@@ -23,11 +23,11 @@
   </div>
   <div class="field">
     <%= f.label :cantidad %><br>
-    <%= f.number_field :cantidad %>
+    <%= f.number_field :cantidad %>  <!-- inhabilita los input -->
   </div>
   <div class="field">
     <%= f.label :precio_total %><br>
-    <%= f.text_field :precio_total %>
+    <%= f.text_field :precio_total, readonly: true %>
   </div>
   <div class="actions">
     <%= f.submit %>
